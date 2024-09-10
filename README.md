@@ -18,12 +18,12 @@ O objetivo deste projeto é fornecer uma ferramenta básica para gerenciamento d
 ### Estrutura da Tabela de Cards
 
 ```bash
-- id: (seria uma boa isso ser um UUID? uma chave primária, gerada automaticamente )
+- id: (UUID chave primária, gerada automaticamente)
 - titulo: string (obrigatório, limite de caracteres pode ser definido!)
 - descricao: string (opcional)
 - status: enum ('TO_DO', 'DOING', 'DONE') (obrigatório, padrão: 'TO_DO')
 - created_at: datetime (obrigatório, gerado na criação)
-- updated_at: datetime (atualizado automaticamente em qualquer modificação ou vale a pena criar um específico para quando é movido para doing?)
+- updated_at: datetime (atualizado automaticamente em qualquer modificação)
 - finished_at: datetime (atualizado apenas quando o status muda para 'DONE')
 ```
 
@@ -79,8 +79,8 @@ Resposta:
 ```
 
 3. Iniciar um Card (Mover para "DOING")
-   Método: PUT
-   Endpoint: `/cards/:id/start`
+   Método: PATCH
+   Endpoint: `/cards/:id/status/start`
 
 Resposta:
 
@@ -93,8 +93,8 @@ Resposta:
 ```
 
 4. Finalizar um Card (Mover para "DONE")
-   Método: PUT
-   Endpoint: `/cards/:id/finish`
+   Método: PATCH
+   Endpoint: `/cards/:id/status/finish`
 
 Resposta:
 
